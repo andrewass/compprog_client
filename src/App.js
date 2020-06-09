@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router} from "react-router-dom";
+import styled from "styled-components";
+import Body from "./body/Body";
+import Header from "./header/Header";
+
+const AppBlock = styled.div`
+  width: 60%;
+  margin-right: 20%;
+  margin-left: 20%;
+`;
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <AppBlock>
+            <Router>
+                <Header/>
+                <Body/>
+            </Router>
+        </AppBlock>
+    );
 }
 
 export default App;
