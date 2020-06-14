@@ -12,9 +12,9 @@ const ProblemRow = styled.div`
 const Problem = ({problem}) => {
     return(
         <ProblemRow>
-            <img src={codeforcesIcon} />
-            <a href={problem.problemUrl} target="_blank">{problem.problemName}</a>
-            <img src={greenCheckMark} />
+            <img src={codeforcesIcon} alt="The Codeforces icon"/>
+            <a href={problem.problemUrl} target="_blank" rel="noopener noreferrer" >{problem.problemName}</a>
+            <img src={greenCheckMark} alt="A green checkmark"/>
         </ProblemRow>)
 }
 

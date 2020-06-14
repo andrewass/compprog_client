@@ -27,7 +27,7 @@ const UpperBar = () => {
         <MenuBar>
             <div className="logo">CompProg Client</div>
             <Link to="/stocks" className="authLink">Sign In</Link>
-            <Link to="/currency" className="authLink">Sign Up</Link>
+            <Link to="/sign-up" className="authLink">Sign Up</Link>
         </MenuBar>
     );
 };
