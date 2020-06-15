@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 const URL = {
-    sign_up: "http://localhost:8080/auth/sign-up"
+    sign_up: "http://localhost:8080/auth/sign-in"
 };
 
 const AuthBlock = styled.div`
@@ -11,15 +11,13 @@ const AuthBlock = styled.div`
    width: 300px;
 `;
 
-class SignUp extends React.Component {
+class SignIn extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             username: "",
-            email: "",
-            password: "",
-            retypedPassword: ""
+            password: ""
         }
         this.changeHandler = this.changeHandler.bind(this);
         this.postSignUpToServer = this.postSignUpToServer.bind(this);
@@ -34,10 +32,8 @@ class SignUp extends React.Component {
         axios.post(URL.sign_up, {
             username: this.state.username,
             password: this.state.password,
-            email: this.state.email
         })
             .then((response) => {
-                alert(response.data.jwt)
                 this.props.setUserInfo(this.state.username, response.data.jwt, true)
             }, (error) => {
                 console.log(error)
@@ -47,15 +43,12 @@ class SignUp extends React.Component {
     render() {
         return (
             <AuthBlock>
-                <h3>Sign Up</h3>
+                <h3>Sign In</h3>
                 <form onSubmit={this.postSignUpToServer}>
                     <input name="username" type="text" placeholder="Your username" onChange={this.changeHandler}/>
-                    <input name="email" type="email" placeholder="Your email address" onChange={this.changeHandler}/>
                     <input name="password" type="password" placeholder="Your password" onChange={this.changeHandler}/>
-                    <input name="retypedPassword" type="password" placeholder="Retype password"
-                           onChange={this.changeHandler}/>
                     <br/>
-                    <button>Sign Up</button>
+                    <button>Sign In</button>
                 </form>
             </AuthBlock>
         );
@@ -63,4 +56,4 @@ class SignUp extends React.Component {
 
 }
 
-export default SignUp;
+export default SignIn;
