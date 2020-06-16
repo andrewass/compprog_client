@@ -1,7 +1,6 @@
-
 import React from "react";
-import {Link} from "react-router-dom";
 import styled from "styled-components";
+import Authentication from "./Authentication";
 
 const MenuBar = styled.nav`
   display: flex;
@@ -9,25 +8,18 @@ const MenuBar = styled.nav`
   justify-content: space-evenly;
   align-items: center;
   height: 5vh;
-  
-  .authLink{
-    text-decoration: none;
-    color: black;
-    font-size: 1.5vh;
-  }
-  
+   
   .logo{
     font-size: 3vh;
     font-weight: bold;
   }
 `;
 
-const UpperBar = () => {
+const UpperBar = (props) => {
     return (
         <MenuBar>
             <div className="logo">CompProg Client</div>
-            <Link to="/sign-in" className="authLink">Sign In</Link>
-            <Link to="/sign-up" className="authLink">Sign Up</Link>
+            <Authentication setUserInfo={props.setUserInfo} isSignedIn={props.isSignedIn}/>
         </MenuBar>
     );
 };

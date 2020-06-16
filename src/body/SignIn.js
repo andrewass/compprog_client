@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
+import {withRouter} from "react-router-dom";
 
 const URL = {
-    sign_up: "http://localhost:8080/auth/sign-in"
+    sign_in: "http://localhost:8080/auth/sign-in"
 };
 
 const AuthBlock = styled.div`
@@ -29,14 +30,15 @@ class SignIn extends React.Component {
 
     postSignUpToServer(event) {
         event.preventDefault();
-        axios.post(URL.sign_up, {
+        axios.post(URL.sign_in, {
             username: this.state.username,
             password: this.state.password,
         })
             .then((response) => {
-                this.props.setUserInfo(this.state.username, response.data.jwt, true)
+                this.props.setUserInfo(this.state.username, response.data.jwt, true);
+                this.props.history.push("/problems");
             }, (error) => {
-                console.log(error)
+                console.log(error);
             });
     }
 
@@ -56,4 +58,4 @@ class SignIn extends React.Component {
 
 }
 
-export default SignIn;
+export default withRouter(SignIn);

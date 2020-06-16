@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import styled from "styled-components";
 
 const MenuBar = styled.nav`
@@ -20,9 +20,9 @@ const MenuBar = styled.nav`
 const LowerBar = () => {
     return (
         <MenuBar>
-            <Link to="/submissions" className="link">Submissions</Link>
-            <Link to="/problems" className="link">Problems</Link>
-            <Link to="/algorithms" className="link">Algorithms</Link>
+            <NavLink to="/submissions" className="link">Submissions</NavLink>
+            <NavLink to="/problems" className="link">Problems</NavLink>
+            <NavLink to="/algorithms" className="link">Algorithms</NavLink>
         </MenuBar>
     );
 };

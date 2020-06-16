@@ -11,15 +11,37 @@ const AppBlock = styled.div`
 `;
 
 
-function App() {
-    return (
-        <AppBlock>
-            <Router>
-                <Header/>
-                <Body/>
-            </Router>
-        </AppBlock>
-    );
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            jwt: "",
+            isSignedIn: false
+        };
+        this.setUserInfo = this.setUserInfo.bind(this);
+    }
+
+    setUserInfo(username, token, isSignedIn) {
+        this.setState({
+                isSignedIn: isSignedIn,
+                username: username,
+                jwt: token
+            }
+        );
+    }
+
+    render() {
+        return (
+            <AppBlock>
+                <Router>
+                    <Header setUserInfo={this.setUserInfo} isSignedIn={this.state.isSignedIn}/>
+                    <Body setUserInfo={this.setUserInfo}/>
+                </Router>
+            </AppBlock>
+        );
+    }
 }
 
 export default App;

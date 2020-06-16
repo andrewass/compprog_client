@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
+import {withRouter} from "react-router-dom";
 
 const URL = {
     sign_up: "http://localhost:8080/auth/sign-up"
@@ -37,10 +38,10 @@ class SignUp extends React.Component {
             email: this.state.email
         })
             .then((response) => {
-                alert(response.data.jwt)
-                this.props.setUserInfo(this.state.username, response.data.jwt, true)
+                this.props.setUserInfo(this.state.username, response.data.jwt, true);
+                this.props.history.push("/problems");
             }, (error) => {
-                console.log(error)
+                console.log(error);
             });
     }
 
@@ -63,4 +64,4 @@ class SignUp extends React.Component {
 
 }
 
-export default SignUp;
+export default withRouter(SignUp);

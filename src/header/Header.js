@@ -2,17 +2,13 @@ import React from "react";
 import LowerBar from "./LowerBar";
 import UpperBar from "./UpperBar";
 
-class Header extends React.Component {
-
-    render() {
-        return (
-            <div>
-                <UpperBar/>
-                <LowerBar/>
-            </div>
-        );
-    }
-
+const Header = (props) => {
+    return (
+        <div>
+            <UpperBar setUserInfo={props.setUserInfo} isSignedIn={props.isSignedIn}/>
+            <LowerBar/>
+        </div>
+    );
 }
 
 export default Header;
