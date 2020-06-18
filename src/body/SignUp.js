@@ -38,7 +38,10 @@ class SignUp extends React.Component {
             email: this.state.email
         })
             .then((response) => {
-                this.props.setUserInfo(this.state.username, response.data.jwt, true);
+                //this.props.setUserInfo(this.state.username, response.data.jwt, true);
+                localStorage.setItem("username",this.state.username);
+                localStorage.setItem("jwt", response.data.jwt);
+                localStorage.setItem("isSignedIn", "true");
                 this.props.history.push("/problems");
             }, (error) => {
                 console.log(error);

@@ -10,10 +10,10 @@ const ProblemRow = styled.div`
 `;
 
 const Problem = ({problem}) => {
-    return(
+    return (
         <ProblemRow>
             <img src={codeforcesIcon} alt="The Codeforces icon"/>
-            <a href={problem.problemUrl} target="_blank" rel="noopener noreferrer" >{problem.problemName}</a>
+            <a href={problem.problemUrl} target="_blank" rel="noopener noreferrer">{problem.problemName}</a>
             <img src={greenCheckMark} alt="A green checkmark"/>
         </ProblemRow>)
 }

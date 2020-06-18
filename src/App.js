@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
 import styled from "styled-components";
 import Body from "./body/Body";
@@ -10,38 +10,26 @@ const AppBlock = styled.div`
   margin-left: 20%;
 `;
 
+const App = () => {
+    const [username, setUsername] = useState("");
+    const [jwt, setJwt] = useState("");
+    const [signedIn, setSignedIn] = useState(false)
 
-class App extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: "",
-            jwt: "",
-            isSignedIn: false
-        };
-        this.setUserInfo = this.setUserInfo.bind(this);
+    const setUserInfo = (username, token, isSignedIn) => {
+        setUsername(username);
+        setJwt(token)
+        setSignedIn(isSignedIn)
     }
 
-    setUserInfo(username, token, isSignedIn) {
-        this.setState({
-                isSignedIn: isSignedIn,
-                username: username,
-                jwt: token
-            }
-        );
-    }
-
-    render() {
-        return (
-            <AppBlock>
-                <Router>
-                    <Header setUserInfo={this.setUserInfo} isSignedIn={this.state.isSignedIn}/>
-                    <Body setUserInfo={this.setUserInfo}/>
-                </Router>
-            </AppBlock>
-        );
-    }
+    return (
+        <AppBlock>
+            <Router>
+                <Header setUserInfo={setUserInfo} isSignedIn={signedIn}/>
+                <Body setUserInfo={setUserInfo}/>
+            </Router>
+        </AppBlock>
+    );
 }
 
 export default App;
+
