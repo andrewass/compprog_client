@@ -2,10 +2,10 @@ import React from "react";
 import LowerBar from "./LowerBar";
 import UpperBar from "./UpperBar";
 
-const Header = (props) => {
+const Header = () => {
     return (
         <div>
-            <UpperBar setUserInfo={props.setUserInfo} isSignedIn={props.isSignedIn}/>
+            <UpperBar/>
             <LowerBar/>
         </div>
     );

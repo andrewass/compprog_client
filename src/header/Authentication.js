@@ -1,22 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {NavLink} from "react-router-dom";
+import authService from "../service/authService";
 
-const EMPTY_USERNAME = "";
-const EMPTY_JWT = "";
 
 const Authentication = () => {
 
-    const [signedIn,setSignedIn] = useState("false");
+    const [signedIn, setSignedIn] = useState("false");
 
     const signOutUser = () => {
-        console.log("Signing out user");
-        localStorage.setItem("isSignedIn", "false");
-        localStorage.setItem("username", EMPTY_USERNAME);
-        localStorage.setItem("jwt", EMPTY_JWT);
-        setSignedIn(localStorage.getItem("isSignedIn"));
+        authService.signOut();
     }
 
-    if (localStorage.getItem("isSignedIn") === "true") {
+    if (localStorage.getItem("username")) {
         return (
             <NavLink to="/problems">
                 <span onClick={signOutUser}>Sign Out</span>

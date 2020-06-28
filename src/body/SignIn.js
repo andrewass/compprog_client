@@ -1,16 +1,7 @@
 import React from "react";
-import styled from "styled-components";
-import axios from "axios";
 import {withRouter} from "react-router-dom";
+import authService from "../service/authService";
 
-const URL = {
-    sign_in: "http://localhost:8080/auth/sign-in"
-};
-
-const AuthBlock = styled.div`
-   margin: 0 auto;
-   width: 300px;
-`;
 
 class SignIn extends React.Component {
 
@@ -30,24 +21,12 @@ class SignIn extends React.Component {
 
     postSignUpToServer(event) {
         event.preventDefault();
-        axios.post(URL.sign_in, {
-            username: this.state.username,
-            password: this.state.password,
-        })
-            .then((response) => {
-                //this.props.setUserInfo(this.state.username, response.data.jwt, true);
-                localStorage.setItem("username",this.state.username);
-                localStorage.setItem("jwt", response.data.jwt);
-                localStorage.setItem("isSignedIn", "true");
-                this.props.history.push("/problems");
-            }, (error) => {
-                console.log(error);
-            });
+        authService.signIn(this.state.username, this.state.password);
     }
 
     render() {
         return (
-            <AuthBlock>
+            <React.Fragment>
                 <h3>Sign In</h3>
                 <form onSubmit={this.postSignUpToServer}>
                     <input name="username" type="text" placeholder="Your username" onChange={this.changeHandler}/>
@@ -55,7 +34,7 @@ class SignIn extends React.Component {
                     <br/>
                     <button>Sign In</button>
                 </form>
-            </AuthBlock>
+            </React.Fragment>
         );
     }
 

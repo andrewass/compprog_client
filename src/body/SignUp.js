@@ -1,16 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-import axios from "axios";
-import {withRouter} from "react-router-dom";
+import authService from "../service/authService";
 
-const URL = {
-    sign_up: "http://localhost:8080/auth/sign-up"
-};
-
-const AuthBlock = styled.div`
-   margin: 0 auto;
-   width: 300px;
-`;
 
 class SignUp extends React.Component {
 
@@ -23,7 +13,6 @@ class SignUp extends React.Component {
             retypedPassword: ""
         }
         this.changeHandler = this.changeHandler.bind(this);
-        this.postSignUpToServer = this.postSignUpToServer.bind(this);
     }
 
     changeHandler(event) {
@@ -32,25 +21,12 @@ class SignUp extends React.Component {
 
     postSignUpToServer(event) {
         event.preventDefault();
-        axios.post(URL.sign_up, {
-            username: this.state.username,
-            password: this.state.password,
-            email: this.state.email
-        })
-            .then((response) => {
-                //this.props.setUserInfo(this.state.username, response.data.jwt, true);
-                localStorage.setItem("username",this.state.username);
-                localStorage.setItem("jwt", response.data.jwt);
-                localStorage.setItem("isSignedIn", "true");
-                this.props.history.push("/problems");
-            }, (error) => {
-                console.log(error);
-            });
+        authService.signUp();
     }
 
     render() {
         return (
-            <AuthBlock>
+            <div>
                 <h3>Sign Up</h3>
                 <form onSubmit={this.postSignUpToServer}>
                     <input name="username" type="text" placeholder="Your username" onChange={this.changeHandler}/>
@@ -61,10 +37,10 @@ class SignUp extends React.Component {
                     <br/>
                     <button>Sign Up</button>
                 </form>
-            </AuthBlock>
+            </div>
         );
     }
 
 }
 
-export default withRouter(SignUp);
+export default SignUp;
