@@ -5,8 +5,6 @@ import authService from "../service/authService";
 
 const Authentication = () => {
 
-    const [signedIn, setSignedIn] = useState("false");
-
     const signOutUser = () => {
         authService.signOut();
     }

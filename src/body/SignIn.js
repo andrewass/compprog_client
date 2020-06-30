@@ -1,43 +1,37 @@
-import React from "react";
-import {withRouter} from "react-router-dom";
+import React, {useState} from "react";
 import authService from "../service/authService";
 
 
-class SignIn extends React.Component {
+const SignIn = () => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: "",
-            password: ""
-        }
-        this.changeHandler = this.changeHandler.bind(this);
-        this.postSignUpToServer = this.postSignUpToServer.bind(this);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+
+    const updateUsername = (event) => {
+        setUsername(event.target.value);
     }
 
-    changeHandler(event) {
-        this.setState({[event.target.name]: event.target.value});
+    const updatePassword = (event) => {
+        setPassword(event.target.value);
     }
 
-    postSignUpToServer(event) {
+    const postSignUpToServer = (event) => {
         event.preventDefault();
         authService.signIn(this.state.username, this.state.password);
     }
 
-    render() {
-        return (
-            <React.Fragment>
-                <h3>Sign In</h3>
-                <form onSubmit={this.postSignUpToServer}>
-                    <input name="username" type="text" placeholder="Your username" onChange={this.changeHandler}/>
-                    <input name="password" type="password" placeholder="Your password" onChange={this.changeHandler}/>
-                    <br/>
-                    <button>Sign In</button>
-                </form>
-            </React.Fragment>
-        );
-    }
-
+    return (
+        <React.Fragment>
+            <h3>Sign In</h3>
+            <form onSubmit={postSignUpToServer}>
+                <input name="username" type="text" placeholder="Your username" onChange={updateUsername}/>
+                <input name="password" type="password" placeholder="Your password" onChange={updatePassword}/>
+                <br/>
+                <button>Sign In</button>
+            </form>
+        </React.Fragment>
+    );
 }
 
-export default withRouter(SignIn);
+export default SignIn;

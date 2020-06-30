@@ -12,7 +12,7 @@ const Body = () => {
             <Route path="/submissions" component={Submissions}/>
             <Route path="/problems" component={Problems}/>
             <Route path="/algorithms" component={Submissions}/>
-            <Route path="/sign-in" render={SignIn}/>
+            <Route path="/sign-in" component={SignIn}/>
             <Route path="/sign-up" component={SignUp}/>
         </Switch>
     );
