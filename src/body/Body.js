@@ -5,15 +5,15 @@ import Problems from "./Problems";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 
-const Body = () => {
+const Body = (props) => {
 
     return (
         <Switch>
             <Route path="/submissions" component={Submissions}/>
             <Route path="/problems" component={Problems}/>
             <Route path="/algorithms" component={Submissions}/>
-            <Route path="/sign-in" component={SignIn}/>
-            <Route path="/sign-up" component={SignUp}/>
+            <Route path="/sign-in" render={() => <SignIn setSignedIn={props.setSignedIn}/>}/>
+            <Route path="/sign-up" render={() => <SignUp setSignedIn={props.setSignedIn}/>}/>
         </Switch>
     );
 }

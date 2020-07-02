@@ -1,26 +1,27 @@
-import React, {useState} from "react";
-import {NavLink} from "react-router-dom";
+import React from "react";
 import authService from "../service/authService";
+import {NavLink} from "react-router-dom";
 
-
-const Authentication = () => {
+const Authentication = ({signedIn, setSignedIn}) => {
 
     const signOutUser = () => {
         authService.signOut();
+        setSignedIn(false);
     }
 
-    if (localStorage.getItem("username")) {
+    if (signedIn) {
         return (
             <NavLink to="/problems">
                 <span onClick={signOutUser}>Sign Out</span>
-            </NavLink>
-        );
+            </NavLink>);
     } else {
         return (
-            <React.Fragment>
-                <NavLink to="/sign-in">Sign In</NavLink>
-                <NavLink to="/sign-up">Sign Up</NavLink>
-            </React.Fragment>
+            <div>
+                <nav>
+                    <NavLink to="/sign-in" className="link">Sign In</NavLink>
+                    <NavLink to="/sign-up" className="link">Sign Up</NavLink>
+                </nav>
+            </div>
         );
     }
 }

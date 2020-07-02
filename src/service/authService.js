@@ -22,8 +22,8 @@ const signUp = (username, password, email) => {
 
 const signIn = (username, password) => {
     axios.post(URL.sign_in, {
-        username: this.state.username,
-        password: this.state.password,
+        username: username,
+        password: password,
     })
         .then((response) => {
             localStorage.setItem("username", response.data.username);
@@ -35,9 +35,7 @@ const signIn = (username, password) => {
 }
 
 const signOut = () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("jwt");
-    localStorage.setItem("isSignedIn", "false");
+    localStorage.clear();
 }
 
 const getSignedInUser = () => {

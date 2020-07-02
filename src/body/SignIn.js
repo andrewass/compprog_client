@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import authService from "../service/authService";
+import {useHistory} from "react-router-dom";
 
 
-const SignIn = () => {
+const SignIn = ({setSignedIn}) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    const history = useHistory();
 
     const updateUsername = (event) => {
         setUsername(event.target.value);
@@ -16,15 +17,17 @@ const SignIn = () => {
         setPassword(event.target.value);
     }
 
-    const postSignUpToServer = (event) => {
+    const postSignInToServer = (event) => {
         event.preventDefault();
-        authService.signIn(this.state.username, this.state.password);
+        authService.signIn(username, password);
+        setSignedIn(true);
+        history.push("/problems");
     }
 
     return (
         <React.Fragment>
             <h3>Sign In</h3>
-            <form onSubmit={postSignUpToServer}>
+            <form onSubmit={postSignInToServer}>
                 <input name="username" type="text" placeholder="Your username" onChange={updateUsername}/>
                 <input name="password" type="password" placeholder="Your password" onChange={updatePassword}/>
                 <br/>

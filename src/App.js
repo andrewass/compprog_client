@@ -5,10 +5,12 @@ import Header from "./header/Header";
 
 const App = () => {
 
+    const [signedIn, setSignedIn] = useState(localStorage.getItem("isSignedIn"));
+
     return (
         <Router>
-            <Header/>
-            <Body/>
+            <Header signedIn={signedIn} setSignedIn={setSignedIn}/>
+            <Body setSignedIn={setSignedIn}/>
         </Router>
     );
 }

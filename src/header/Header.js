@@ -2,7 +2,8 @@ import React from "react";
 import Authentication from "./Authentication";
 import {NavLink} from "react-router-dom";
 
-const Header = () => {
+
+const Header = ({signedIn, setSignedIn}) => {
     return (
         <div>
             <div className="logo">CompProg Client</div>
@@ -10,8 +11,8 @@ const Header = () => {
                 <NavLink to="/submissions" className="link">Submissions</NavLink>
                 <NavLink to="/problems" className="link">Problems</NavLink>
                 <NavLink to="/algorithms" className="link">Algorithms</NavLink>
-                <Authentication/>
             </nav>
+            <Authentication signedIn={signedIn} setSignedIn={setSignedIn}/>
         </div>
     );
 }
