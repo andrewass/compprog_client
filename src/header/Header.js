@@ -8,7 +8,7 @@ const Header = ({signedIn, setSignedIn}) => {
         <div>
             <div className="logo">CompProg Client</div>
             <nav>
-                <NavLink to="/submissions" className="link">Submissions</NavLink>
+                <NavLink to="/contests" className="link">Contests</NavLink>
                 <NavLink to="/problems" className="link">Problems</NavLink>
                 <NavLink to="/algorithms" className="link">Algorithms</NavLink>
             </nav>

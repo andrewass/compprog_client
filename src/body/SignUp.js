@@ -9,10 +9,6 @@ const SignUp = () => {
     const [retypedPassword, setRetypedPassword] = useState("");
     const [email, setEmail] = useState("");
 
-    const changeHandler = (event) => {
-        this.setState({[event.target.name]: event.target.value});
-    }
-
     const updateUsername = (event) => {
         setUsername(event.target.value);
     }
@@ -31,7 +27,7 @@ const SignUp = () => {
 
     const postSignUpToServer = (event) => {
         event.preventDefault();
-        authService.signUp();
+        authService.signUp(username, password, email);
     }
 
     return (
@@ -43,8 +39,7 @@ const SignUp = () => {
                 <input name="password" type="password" placeholder="Your password" onChange={updatePassword}/>
                 <input name="retypedPassword" type="password" placeholder="Retype password"
                        onChange={updateRetypedPassword}/>
-                <br/>
-                <button>Sign Up</button>
+                <input type="submit" value="Submit" />
             </form>
         </div>
     );

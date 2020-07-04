@@ -11,17 +11,19 @@ const Authentication = ({signedIn, setSignedIn}) => {
 
     if (signedIn) {
         return (
-            <NavLink to="/problems">
-                <span onClick={signOutUser}>Sign Out</span>
-            </NavLink>);
+            <nav>
+                <NavLink to="/user" className="link">User Settings</NavLink>
+                <NavLink to="/problems">
+                    <span onClick={signOutUser}>Sign Out</span>
+                </NavLink>
+            </nav>
+        );
     } else {
         return (
-            <div>
-                <nav>
-                    <NavLink to="/sign-in" className="link">Sign In</NavLink>
-                    <NavLink to="/sign-up" className="link">Sign Up</NavLink>
-                </nav>
-            </div>
+            <nav>
+                <NavLink to="/sign-in" className="link">Sign In</NavLink>
+                <NavLink to="/sign-up" className="link">Sign Up</NavLink>
+            </nav>
         );
     }
 }
