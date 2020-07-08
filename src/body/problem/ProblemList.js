@@ -6,8 +6,7 @@ const ProblemList = ({problems}) => {
 
     return (
         <div>
-            {problems.map((problem) =>
-                <Problem key={problem.id} problem={problem}/>)}
+            {problems.map((problem) => <Problem key={problem.id} problem={problem}/>)}
         </div>
     );
 }

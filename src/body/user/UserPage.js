@@ -1,9 +1,25 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import commonService from "../../service/commonService";
+import UserHandles from "./UserHandles";
+
 
 const UserPage = () => {
 
-    return(
-        <h4>Userpage</h4>
+    const [platforms, setPlatforms] = useState([]);
+
+    const populatePlatforms = () => {
+        commonService.getPlatforms()
+            .then((response) => setPlatforms(response.data))
+            .catch((error) => console.log(error));
+    }
+
+    useEffect(() => populatePlatforms(), []);
+
+    return (
+        <div>
+            <h4>Userpage</h4>
+            <UserHandles platforms={platforms}/>
+        </div>
     )
 }
 

@@ -10,14 +10,11 @@ const signUp = (username, password, email) => {
         username: username,
         password: password,
         email: email
-    })
-        .then((response) => {
-            localStorage.setItem("username", response.data.username);
-            localStorage.setItem("jwt", response.data.jwt);
-            localStorage.setItem("isSignedIn", "true");
-        }, (error) => {
-            console.log(error);
-        });
+    }).then((response) => {
+        localStorage.setItem("username", response.data.username);
+        localStorage.setItem("jwt", response.data.jwt);
+        localStorage.setItem("isSignedIn", "true");
+    }).catch((error) => console.log(error));
 }
 
 const signIn = (username, password) => {
