@@ -6,13 +6,14 @@ const URL = {
 };
 
 async function getUserHandles() {
-    return await axios.post(URL.GET_USER_HANDLES, {
-        token: localStorage.getItem("jwt")
-    });
+    let token = localStorage.getItem("jwt");
+
+    return await axios.post(URL.GET_USER_HANDLES, {token});
 }
 
 const addUserHandle = (userHandle, platform) => {
     let token = localStorage.getItem("jwt");
+
     axios.post(URL.ADD_USER_HANDLE, {
         userHandle, platform, token
     }).catch((error) => console.log(error));

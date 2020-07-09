@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 
 import userHandleService from "../../service/userHandleService";
 import Select from "react-select";
+import UserHandleList from "./UserHandleList";
 
 const UserHandles = ({platforms}) => {
 
@@ -44,6 +45,7 @@ const UserHandles = ({platforms}) => {
 
     return (
         <div>
+            <UserHandleList userHandles={userHandles} />
             <h4>Add User Handle</h4>
             <form onSubmit={submitForm}>
                 <input name="username" type="text" placeholder="Your user handle" onChange={updateUserHandle}/>

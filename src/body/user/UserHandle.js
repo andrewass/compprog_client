@@ -1,10 +1,12 @@
 import React from "react";
+import codeforcesIcon from "../../images/codeforces.png";
 
 const UserHandle = ({userHandle}) => {
 
     return (
         <div>
-            <h4>UserHandle</h4>
+            <img src={codeforcesIcon} alt="The Codeforces icon"/>
+            <span>{userHandle.userHandle}</span>
         </div>
     );
 }

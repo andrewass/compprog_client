@@ -7,6 +7,7 @@ const SignIn = ({setSignedIn}) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState(null);
     const history = useHistory();
 
     const updateUsername = (event) => {
@@ -17,11 +18,23 @@ const SignIn = ({setSignedIn}) => {
         setPassword(event.target.value);
     }
 
+    const handleErrorResponse = (response) => {
+        if(response.status === 401){
+            setErrorMessage("Invalid credentials. Please verify username and password");
+        } else{
+            setErrorMessage("Uknown error occured during sign up");
+        }
+    }
+
     const postSignInToServer = (event) => {
         event.preventDefault();
-        authService.signIn(username, password);
-        setSignedIn(true);
-        history.push("/problems");
+        let result = authService.signIn(username, password);
+        result.then((response) => {
+            authService.updateLocalStorage(response.data.username, response.data.jwt);
+            console.log("After update of local storage");
+            setSignedIn(true);
+            history.push("/problems");
+        }).catch((error) => handleErrorResponse(error.response));
     }
 
     return (
@@ -33,6 +46,7 @@ const SignIn = ({setSignedIn}) => {
                 <br/>
                 <button>Sign In</button>
             </form>
+            <p>{errorMessage}</p>
         </React.Fragment>
     );
 }

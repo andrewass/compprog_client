@@ -7,7 +7,7 @@ const UserHandleList = ({userHandles}) => {
     return (
         <div>
             {userHandles.map((userHandle) =>
-                <UserHandle key={userHandle.id} userhandle={userHandle}/>)}
+                <UserHandle key={userHandle.id} userHandle={userHandle}/>)}
         </div>
     );
 }

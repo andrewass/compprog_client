@@ -15,34 +15,31 @@ const signUp = (username, password, email) => {
         localStorage.setItem("jwt", response.data.jwt);
         localStorage.setItem("isSignedIn", "true");
     }).catch((error) => console.log(error));
-}
+};
 
-const signIn = (username, password) => {
-    axios.post(URL.sign_in, {
-        username: username,
-        password: password,
-    })
-        .then((response) => {
-            localStorage.setItem("username", response.data.username);
-            localStorage.setItem("jwt", response.data.jwt);
-            localStorage.setItem("isSignedIn", "true");
-        }, (error) => {
-            console.log(error);
-        });
-}
+const signIn = async (username, password) => {
+    return await axios.post(URL.sign_in, {username, password,});
+};
 
 const signOut = () => {
     localStorage.clear();
-}
+};
 
 const getSignedInUser = () => {
     return JSON.parse(localStorage.getItem("user"))
-}
+};
+
+const updateLocalStorage = (username, jwt) => {
+    localStorage.setItem("username", username);
+    localStorage.setItem("jwt", jwt);
+    localStorage.setItem("isSignedIn", "true");
+};
 
 export default {
     signIn,
     signUp,
     signOut,
-    getSignedInUser
+    getSignedInUser,
+    updateLocalStorage
 };
 
