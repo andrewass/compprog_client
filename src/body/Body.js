@@ -6,7 +6,6 @@ import SignIn from "./SignIn";
 import UserPage from "./user/UserPage";
 import Contests from "./contest/Contests";
 import TestGraph from "./algorithm/TestGraph";
-import "./style/body.css";
 
 const Body = (props) => {
 
