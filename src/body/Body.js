@@ -6,19 +6,22 @@ import SignIn from "./SignIn";
 import UserPage from "./user/UserPage";
 import Contests from "./contest/Contests";
 import TestGraph from "./algorithm/TestGraph";
+import "./style/body.css";
 
 const Body = (props) => {
 
     return (
-        <Switch>
-            <Route path="/contests" component={Contests}/>
-            <Route path="/problems" component={Problems}/>
-            <Route path="/algorithms" component={TestGraph}/>
-            <Route path="/sign-in" render={() => <SignIn setSignedIn={props.setSignedIn}/>}/>
-            <Route path="/sign-up" render={() => <SignUp setSignedIn={props.setSignedIn}/>}/>
-            <Route path="/user" component={UserPage}/>
-        </Switch>
+        <div className="bodySection">
+            <Switch>
+                <Route path="/contests" component={Contests}/>
+                <Route path="/problems" component={Problems}/>
+                <Route path="/algorithms" component={TestGraph}/>
+                <Route path="/sign-in" render={() => <SignIn setSignedIn={props.setSignedIn}/>}/>
+                <Route path="/sign-up" render={() => <SignUp setSignedIn={props.setSignedIn}/>}/>
+                <Route path="/user" component={UserPage}/>
+            </Switch>
+        </div>
     );
-}
+};
 
-export default Body
+export default Body;

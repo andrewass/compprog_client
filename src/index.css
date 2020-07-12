@@ -1,9 +1,23 @@
+
 * {
-  margin: 0;
-  padding: 0;
+    padding: 0;
+    margin: 0;
 }
 
 a {
-  text-decoration: none;
-  color: black;
+    text-decoration: none;
+    color: black;
+}
+
+.appBody{
+    margin: auto;
+    max-width: 60%;
+}
+
+.codeforcesIcon{
+    width: 50px;
+}
+
+ul{
+    list-style: none;
 }

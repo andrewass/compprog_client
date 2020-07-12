@@ -5,10 +5,14 @@ const URL = {
     ADD_USER_HANDLE: "http://localhost:8080/userhandle/add-userhandle"
 };
 
-async function getUserHandles() {
-    let token = localStorage.getItem("jwt");
 
-    return await axios.post(URL.GET_USER_HANDLES, {token});
+async function getUserHandles() {
+    return axios({
+        method: "post",
+        url: URL.GET_USER_HANDLES,
+        data: {username: localStorage.getItem("username")},
+        headers: {Authorization: "Bearer " + localStorage.getItem("jwt")}
+    })
 }
 
 const addUserHandle = (userHandle, platform) => {
@@ -16,7 +20,7 @@ const addUserHandle = (userHandle, platform) => {
 
     axios.post(URL.ADD_USER_HANDLE, {
         userHandle, platform, token
-    }).catch((error) => console.log(error));
+    },).catch((error) => console.log(error));
 }
 
 
