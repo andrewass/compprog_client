@@ -9,6 +9,6 @@ const Problem = ({problem}) => {
             <a href={problem.problemUrl} target="_blank" rel="noopener noreferrer">{problem.problemName}</a>
             <img src={greenCheckMark} alt="A green checkmark"/>
         </div>);
-}
+};
 
 export default Problem;

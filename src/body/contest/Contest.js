@@ -16,6 +16,6 @@ const Contest = ({contest}) => {
             </ul>
         </div>
     );
-}
+};
 
 export default Contest;

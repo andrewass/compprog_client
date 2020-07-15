@@ -9,6 +9,6 @@ const ProblemList = ({problems}) => {
             {problems.map((problem) => <Problem key={problem.id} problem={problem}/>)}
         </div>
     );
-}
+};
 
 export default ProblemList;

@@ -7,7 +7,7 @@ const Authentication = ({signedIn, setSignedIn}) => {
     const signOutUser = () => {
         authService.signOut();
         setSignedIn(false);
-    }
+    };
 
     if (signedIn) {
         return (
@@ -26,6 +26,6 @@ const Authentication = ({signedIn, setSignedIn}) => {
             </React.Fragment>
         );
     }
-}
+};
 
 export default Authentication;

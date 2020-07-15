@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import authService from "../service/authService";
 import {useHistory} from "react-router-dom";
-
+import "../header/authentication.css";
 
 const SignIn = ({setSignedIn}) => {
 
@@ -12,19 +12,19 @@ const SignIn = ({setSignedIn}) => {
 
     const updateUsername = (event) => {
         setUsername(event.target.value);
-    }
+    };
 
     const updatePassword = (event) => {
         setPassword(event.target.value);
-    }
+    };
 
     const handleErrorResponse = (response) => {
-        if(response.status === 401){
+        if (response.status === 401) {
             setErrorMessage("Invalid credentials. Please verify username and password");
-        } else{
+        } else {
             setErrorMessage("Uknown error occured during sign up");
         }
-    }
+    };
 
     const postSignInToServer = (event) => {
         event.preventDefault();
@@ -35,20 +35,19 @@ const SignIn = ({setSignedIn}) => {
             setSignedIn(true);
             history.push("/problems");
         }).catch((error) => handleErrorResponse(error.response));
-    }
+    };
 
     return (
-        <React.Fragment>
-            <h3>Sign In</h3>
-            <form onSubmit={postSignInToServer}>
+        <div className="signInBlock">
+            <form onSubmit={postSignInToServer} className="signInForm">
+                <span>Sign In</span>
                 <input name="username" type="text" placeholder="Your username" onChange={updateUsername}/>
                 <input name="password" type="password" placeholder="Your password" onChange={updatePassword}/>
-                <br/>
-                <button>Sign In</button>
+                <input type="submit" value="Submit"/>
             </form>
             <p>{errorMessage}</p>
-        </React.Fragment>
+        </div>
     );
-}
+};
 
 export default SignIn;

@@ -10,6 +10,6 @@ const ContestList = ({contests}) => {
                 <Contest key={contest.id} contest={contest}/>)}
         </div>
     );
-}
+};
 
 export default ContestList;

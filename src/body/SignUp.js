@@ -31,9 +31,9 @@ const SignUp = () => {
     }
 
     return (
-        <div>
-            <h3>Sign Up</h3>
-            <form onSubmit={postSignUpToServer}>
+        <div className="signUpBlock">
+            <form onSubmit={postSignUpToServer} className="signUpForm">
+                <span>Sign Up</span>
                 <input name="username" type="text" placeholder="Your username" onChange={updateUsername}/>
                 <input name="email" type="email" placeholder="Your email address" onChange={updateEmail}/>
                 <input name="password" type="password" placeholder="Your password" onChange={updatePassword}/>

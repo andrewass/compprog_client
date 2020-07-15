@@ -16,9 +16,9 @@ const Problems = () => {
 
     return (
         <div className="problems">
-            <ProblemList problems={problems} />
+            <ProblemList problems={problems}/>
         </div>
     );
-}
+};
 
 export default Problems;

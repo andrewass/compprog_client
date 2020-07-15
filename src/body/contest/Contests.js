@@ -19,6 +19,6 @@ const Contests = () => {
             <ContestList contests={contests}/>
         </div>
     );
-}
+};
 
 export default Contests;

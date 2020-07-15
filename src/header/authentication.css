@@ -1,0 +1,32 @@
+
+.signInBlock {
+    border-radius: 30px;
+    width: 40%;
+    margin: 5% auto auto;
+    background-color: lightgray;
+}
+
+.signInForm {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 60%;
+    margin: auto;
+}
+
+.signUpBlock {
+    border-radius: 30px;
+    width: 40%;
+    margin: 5% auto auto;
+    background-color: lightgray;
+}
+
+.signUpForm {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 60%;
+    margin: auto;
+}
