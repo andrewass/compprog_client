@@ -11,16 +11,15 @@ const UserPage = () => {
         commonService.getPlatforms()
             .then((response) => setPlatforms(response.data))
             .catch((error) => console.log(error));
-    }
+    };
 
     useEffect(() => populatePlatforms(), []);
 
     return (
         <div>
-            <h4>Userpage</h4>
             <UserHandles platforms={platforms}/>
         </div>
     )
-}
+};
 
 export default UserPage;

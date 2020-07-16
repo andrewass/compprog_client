@@ -10,6 +10,6 @@ const UserHandleList = ({userHandles}) => {
                 <UserHandle key={userHandle.id} userHandle={userHandle}/>)}
         </div>
     );
-}
+};
 
 export default UserHandleList;

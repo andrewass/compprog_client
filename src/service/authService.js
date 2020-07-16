@@ -5,16 +5,8 @@ const URL = {
     sign_up: "http://localhost:8080/auth/sign-up"
 };
 
-const signUp = (username, password, email) => {
-    axios.post(URL.sign_up, {
-        username: username,
-        password: password,
-        email: email
-    }).then((response) => {
-        localStorage.setItem("username", response.data.username);
-        localStorage.setItem("jwt", response.data.jwt);
-        localStorage.setItem("isSignedIn", "true");
-    }).catch((error) => console.log(error));
+const signUp = async (username, password, email) => {
+   return await axios.post(URL.sign_up, {username, password, email})
 };
 
 const signIn = async (username, password) => {

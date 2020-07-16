@@ -14,14 +14,20 @@ const Header = ({signedIn, setSignedIn}) => {
 
             <div className="navigationBlock">
                 <nav className="navigationBar">
+                    <div className="dropdown-menu">
+                        <button className="dropdown-button">Algorithms</button>
+                        <div className="dropdown-items">
+                            <NavLink to="/tree" className="link">Tree</NavLink>
+                            <NavLink to="/network-flow" className="link">Network Flow</NavLink>
+                        </div>
+                    </div>
                     <NavLink to="/contests" className="link">Contests</NavLink>
                     <NavLink to="/problems" className="link">Problems</NavLink>
-                    <NavLink to="/algorithms" className="link">Algorithms</NavLink>
                     <Authentication signedIn={signedIn} setSignedIn={setSignedIn}/>
                 </nav>
             </div>
         </header>
     );
-}
+};
 
 export default Header;

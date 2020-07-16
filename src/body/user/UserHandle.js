@@ -16,6 +16,6 @@ const UserHandle = ({userHandle}) => {
             </ul>
         </div>
     );
-}
+};
 
 export default UserHandle;

@@ -6,6 +6,8 @@ import SignIn from "./SignIn";
 import UserPage from "./user/UserPage";
 import Contests from "./contest/Contests";
 import TestGraph from "./algorithm/TestGraph";
+import SegmentTreeText from "./datastructure/tree/SegmentTreeText";
+import "../body/body.css"
 
 const Body = (props) => {
 
@@ -14,7 +16,8 @@ const Body = (props) => {
             <Switch>
                 <Route path="/contests" component={Contests}/>
                 <Route path="/problems" component={Problems}/>
-                <Route path="/algorithms" component={TestGraph}/>
+                <Route path="/network-flow" component={TestGraph}/>
+                <Route path="/tree" component={SegmentTreeText} />
                 <Route path="/sign-in" render={() => <SignIn setSignedIn={props.setSignedIn}/>}/>
                 <Route path="/sign-up" render={() => <SignUp setSignedIn={props.setSignedIn}/>}/>
                 <Route path="/user" component={UserPage}/>

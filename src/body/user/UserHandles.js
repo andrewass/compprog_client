@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-
+import "../user/user.css";
 import userHandleService from "../../service/userHandleService";
 import Select from "react-select";
 import UserHandleList from "./UserHandleList";
@@ -21,39 +21,39 @@ const UserHandles = ({platforms}) => {
                 label: platform
             }
         });
-    }
+    };
 
     const updateOption = (option) => {
         setPlatform(option.value);
-    }
+    };
 
     const updateUserHandle = (event) => {
         setUserHandle(event.target.value);
-    }
+    };
 
     const populateUserHandles = () => {
         userHandleService.getUserHandles()
             .then((response) => setUserHandles(response.data))
             .catch((error) => console.log(error));
-    }
+    };
 
     const submitForm = (event) => {
         event.preventDefault();
-        console.log("Platform is "+platform);
-        userHandleService.addUserHandle(userHandle, platform);
-    }
+        userHandleService.addUserHandle(userHandle, platform)
+            .then(populateUserHandles)
+            .catch((error) => console.log(error));
+    };
 
     return (
         <div>
-            <UserHandleList userHandles={userHandles} />
-            <h4>Add User Handle</h4>
-            <form onSubmit={submitForm}>
+            <UserHandleList userHandles={userHandles}/>
+            <form className="addUserHandleForm" onSubmit={submitForm}>
                 <input name="username" type="text" placeholder="Your user handle" onChange={updateUserHandle}/>
-                <Select onChange={updateOption} options={getSelectOptions()}/>
+                <Select className="platformSelect" onChange={updateOption} options={getSelectOptions()}/>
                 <input type="submit" value="Submit"/>
             </form>
         </div>
     )
-}
+};
 
 export default UserHandles;

@@ -12,10 +12,15 @@ a {
     color: black;
 }
 
-.codeforcesIcon{
+.codeforcesIcon {
     width: 50px;
 }
 
-ul{
+ul {
     list-style: none;
 }
+
+button {
+    border: none;
+}
+

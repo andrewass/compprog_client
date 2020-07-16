@@ -1,31 +1,47 @@
 
-.navigationBlock{
+.navigationBlock {
     border-top: solid grey 0.05em;
     border-bottom: solid grey 0.05em;
     background-color: floralwhite;
 }
 
-.navigationBar{
+.navigationBar {
     display: flex;
     justify-content: space-between;
     padding: 1.2em;
-    margin:auto;
+    margin: auto;
     max-width: 50%;
 
 }
 
-.logo{
+.logo {
     display: flex;
     align-items: center;
     margin: auto;
     max-width: 70%;
 }
 
-.logoIcon{
+.logoIcon {
     width: 100px;
 }
 
-.logoTitle{
+.logoTitle {
     margin-left: 0.5em;
     font-size: xx-large;
+}
+
+
+.dropdown-button {
+    background-color: floralwhite;
+}
+
+.dropdown-items {
+    display: none;
+}
+
+.dropdown-menu:hover .dropdown-items {
+    display: flex;
+    flex-flow: column nowrap;
+    position: absolute;
+    background-color: floralwhite;
 }
