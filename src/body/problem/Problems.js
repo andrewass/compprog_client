@@ -1,22 +1,27 @@
 import React, {useEffect, useState} from "react";
-import axios from "axios";
 import ProblemList from "./ProblemList";
-
-const TRENDING_PROBLEMS_URL = "http://localhost:8080/problem/trending-problems";
+import {getSolvedProblems} from "../../service/problemService";
 
 const Problems = () => {
 
-    const [problems, setProblems] = useState([]);
+    const [solvedProblems, setSolvedProblems] = useState(new Set());
+
+    const fetchSolvedProblems = (username) => {
+        getSolvedProblems(username)
+            .then(response => setSolvedProblems(new Set(response.data)))
+            .catch(error => console.log(error));
+    };
 
     useEffect(() => {
-        axios.get(TRENDING_PROBLEMS_URL)
-            .then((response) => setProblems(response.data)
-                , (error) => console.log(error));
+        let username = localStorage.getItem("username");
+        if (username) {
+            fetchSolvedProblems(username);
+        }
     }, []);
 
     return (
         <div className="problems">
-            <ProblemList problems={problems}/>
+            <ProblemList solvedProblems={solvedProblems}/>
         </div>
     );
 };

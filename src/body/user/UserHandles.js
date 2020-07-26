@@ -53,7 +53,7 @@ const UserHandles = ({platforms}) => {
                 <input type="submit" value="Submit"/>
             </form>
         </div>
-    )
+    );
 };
 
 export default UserHandles;

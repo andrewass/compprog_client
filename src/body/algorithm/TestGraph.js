@@ -1,35 +1,38 @@
-import React, {useEffect, useRef} from "react";
-import {select} from "d3";
-import EdmondsKarpsText from "./flow/EdmondsKarpText";
-
-const data = [25, 53, 34, 12, 45];
+import React, {useEffect, useRef, useState} from "react";
+import {csv, select, selectAll} from "d3";
+import FordFulkersonText from "./flow/FordFulkersonText";
+import graphNodes from "./maxflowgraph.csv";
 
 const TestGraph = () => {
 
+    const [nodes, setNodes] = useState([]);
+
     const svgRef = useRef();
 
+    const populateNodes = () => {
+        csv(graphNodes).then((nodes) => {
+            setNodes(nodes.map((node) => {
+                console.log(node.x);
+                return (
+                    <circle cx={node.x} r="34"/>
+                );
+            }));
+        });
+    };
+
     useEffect(() => {
+        populateNodes();
         const svg = select(svgRef.current);
 
         svg.selectAll("circle")
-            .data(data)
-            .join(
-                enter => enter.append("circle")
-                    .attr("r", value => value)
-                    .attr("cx", value => value * 2)
-                    .attr("cy", value => value * 2)
-                    .attr("stroke", "red"),
-                update => update.attr("class", "updated"),
-                exit => exit.remove()
-            );
+            .attr("r","30");
+
     }, []);
 
     return (
         <div className="textContent">
-            <svg ref={svgRef}>
-                <circle/>
-            </svg>
-            <EdmondsKarpsText/>
+            <svg ref={svgRef} />
+            <FordFulkersonText/>
         </div>
     );
 };
