@@ -31,19 +31,6 @@ const secondPart = (
     </React.Fragment>
 );
 
-const thirdPart = (
-    <React.Fragment>
-        <p className="textBlock">
-            Terms: <br/>
-            Augmenting path : A path of edges which we can push more flow through<br/>
-            Residual capacity : The remaining amount of flow we can push through an edge.
-            This equals capacity of edge - current amount of flow passed through edge<br/>
-            Residual network : This is a graph where the edges are listed with both flow and capacity. We have also listed
-            reverse edges for each edge contained in the original graph.
-        </p>
-    </React.Fragment>
-)
-
 const FordFulkersonText = () => {
     return (
         <div>
@@ -51,7 +38,6 @@ const FordFulkersonText = () => {
                 <div>
                     {firstPart}
                     {secondPart}
-                    {thirdPart}
                 </div>
             </Context>
         </div>

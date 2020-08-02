@@ -1,0 +1,11 @@
+
+
+.starIcon{
+    width: 20px;
+}
+
+.problemRow{
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 1.2em;
+}
