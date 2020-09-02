@@ -13,7 +13,6 @@ const problem = {
 let container = null;
 
 beforeEach(() => {
-    //Setup a DOM element as a render target
     container = document.createElement("div");
     document.body.appendChild(container);
 });
@@ -24,6 +23,7 @@ afterEach(() => {
     container = null;
 })
 
+
 it("renders as expected with no previously solved problems", () => {
     let solved = new Set();
 
@@ -32,8 +32,6 @@ it("renders as expected with no previously solved problems", () => {
     });
 
     commonAssertions();
-    expect(container.getElementsByClassName("greenCheckMark").length).toBe(1);
-
 });
 
 it("renders as expected with previously solved problem", () => {
@@ -49,17 +47,17 @@ it("renders as expected with previously solved problem", () => {
     });
 
     commonAssertions();
-    expect(container.getElementsByClassName("greenCheckMark").length).toBe(1);
-
 });
 
 const commonAssertions = () => {
     let child = container.firstChild;
     let url = container.getElementsByTagName("a")[0].href;
 
-    expect(container.textContent).toBe("test problem");
+    expect(container.textContent).toMatch("test problem");
     expect(child.childElementCount).toBe(4);
-    expect(url).toBe("https://www.problemurl.com/");
+    expect(url).toMatch("https://www.problemurl.com/");
     expect(container.getElementsByClassName("codeforcesIcon").length).toBe(1);
     expect(container.getElementsByClassName("starIcon").length).toBe(6);
+    expect(container.getElementsByClassName("greenCheckMark").length).toBe(1);
+
 }

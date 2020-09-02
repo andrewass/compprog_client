@@ -21,7 +21,7 @@ const ProblemList = ({solvedProblems}) => {
         getProblems(page)
             .then(response => {
                 setProblems(response.data.problems);
-                setPages(response.data.totalPages)
+                setPages(response.data.totalPages);
             })
             .catch(error => console.log(error));
     };

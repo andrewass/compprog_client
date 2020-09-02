@@ -11,7 +11,7 @@ const getProblems = (page) => {
 };
 
 const getSolvedProblems = (username) => {
-    return axios.get(SOLVED_PROBLEMS_URL,{
+    return axios.get(SOLVED_PROBLEMS_URL, {
         params: {username}
     });
 };

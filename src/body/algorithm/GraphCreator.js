@@ -12,7 +12,7 @@ const createNodes = (nodes, svg) => {
                 .attr("id", data => data.nodeId)
                 .attr("stroke", "black")
                 .attr("r", 15)
-                .attr("fill", "black")
+                .attr("fill", "white")
         });
 };
 

@@ -8,8 +8,8 @@ const Problems = () => {
 
     const fetchSolvedProblems = (username) => {
         getSolvedProblems(username)
-            .then(response => setSolvedProblems(new Set(response.data)))
-            .catch(error => console.log(error));
+            .then(response => setSolvedProblems(new Set(response.data.problems)))
+            .catch(error => console.log(error))
     };
 
     useEffect(() => {
@@ -21,9 +21,10 @@ const Problems = () => {
 
     return (
         <div className="problems">
-            <ProblemList solvedProblems={solvedProblems}/>
+            <ProblemList className="problemList" solvedProblems={solvedProblems}/>
         </div>
     );
-};
+}
+
 
 export default Problems;

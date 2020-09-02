@@ -1,11 +1,21 @@
 
+.problems {
+    margin-left: 20%;
+    max-width: 70%;
+}
 
-.starIcon{
+.starIcon {
     width: 20px;
 }
 
-.problemRow{
+.problemRow {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     margin-top: 1.2em;
+}
+
+
+#codeforcesIcon {
+    width: 50px;
 }

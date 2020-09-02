@@ -10,6 +10,7 @@ const FordFulkersonGraph = () => {
 
     useEffect(() => {
         const svg = select(svgRef.current);
+
         csv(graphNodes).then(async (response) => {
             await createNodes(response, svg);
             csv(graphEdges).then((response) => {

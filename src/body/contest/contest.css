@@ -1,12 +1,12 @@
 
 .contestBlock{
-    margin: auto;
+    margin-left: 20%;
     max-width: 70%;
 }
 
 .contest{
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center;
     align-items: center;
+    margin-top: 1.0em;
 }
