@@ -60,7 +60,6 @@ const SignUp = ({setSignedIn}) => {
             </form>
             <span className="errorMessage">{errorMessage}</span>
         </div>
-
     );
 };
 

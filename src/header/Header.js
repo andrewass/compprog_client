@@ -9,7 +9,7 @@ const Header = ({signedIn, setSignedIn}) => {
         <header>
             <div className="logo">
                 <img className="logoIcon" src={logoIcon} alt="The Logo icon"/>
-                <span className="logoTitle">Algod</span>
+                <span className="logoTitle">Algos</span>
             </div>
 
             <div className="navigationBlock">

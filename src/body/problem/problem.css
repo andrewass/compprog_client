@@ -15,7 +15,15 @@
     margin-top: 1.2em;
 }
 
+.starRow {
+    display: flex;
+    flex-flow: row nowrap;
+}
 
 #codeforcesIcon {
     width: 50px;
+}
+
+.problemCol {
+    margin-right: 1em;
 }
