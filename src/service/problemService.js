@@ -7,8 +7,9 @@ const SOLVED_PROBLEMS_URL = "http://localhost:8080/problem/solved-problems";
 const ADD_RATING_URL = "http://localhost:8080/problem/add-problem-rating";
 
 const getProblems = (page) => {
+    let username = localStorage.getItem("username");
     return axios.get(TRENDING_PROBLEMS_URL, {
-        params: {page, size: 15}
+        params: {page, size: 15, username}
     });
 };
 

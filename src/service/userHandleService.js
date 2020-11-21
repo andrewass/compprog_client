@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const URL = {
-    GET_USER_HANDLES: "http://localhost:8080/userhandle/get-userhandles",
+    GET_USER_HANDLES: "http://localhost:8080/userhandle/get-users-userhandles",
     ADD_USER_HANDLE: "http://localhost:8080/userhandle/add-userhandle"
 };
 

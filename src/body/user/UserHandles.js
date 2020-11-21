@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "../user/user.css";
 import userHandleService from "../../service/userHandleService";
+import {getRemoteSubmissions} from "../../service/submissionService";
 import Select from "react-select";
 import UserHandleList from "./UserHandleList";
 
@@ -37,9 +38,15 @@ const UserHandles = ({platforms}) => {
             .catch((error) => console.log(error));
     };
 
+    const fetchRemoteSubmissions = () => {
+        getRemoteSubmissions(userHandle, platform)
+            .catch((error) => console.log(error));
+    }
+
     const submitForm = (event) => {
         event.preventDefault();
         userHandleService.addUserHandle(userHandle, platform)
+            .then(fetchRemoteSubmissions)
             .then(populateUserHandles)
             .catch((error) => console.log(error));
     };

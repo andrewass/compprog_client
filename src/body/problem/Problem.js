@@ -1,13 +1,12 @@
 import React, {useState} from "react";
 import codeforcesIcon from "../../images/codeforces.png";
-import greenCheckMark from "../../images/green-check-mark.png";
 import "./problem.css";
 import Star from "./Star";
 import {submitUserRating} from "../../service/problemService";
 
 const problemCol = "problemCol";
 
-const Problem = ({problem, solvedProblems}) => {
+const Problem = ({problem}) => {
 
     const [userRating, setUserRating] = useState(problem.rating)
 
@@ -31,19 +30,13 @@ const Problem = ({problem, solvedProblems}) => {
         );
     }
 
-    const hasSolvedProblem = (id) => {
-        return solvedProblems.has(id);
-    };
-
     return (
         <div className="problemRow">
             <img src={codeforcesIcon} id="codeforcesIcon"
                  className="problemCol" alt="The Codeforces icon"/>
-            <a href={problem.problemUrl} className={problemCol} target="_blank" rel="noopener noreferrer">
-                {problem.problemName}
+            <a href={problem.problem.problemUrl} className={problemCol} target="_blank" rel="noopener noreferrer">
+                {problem.problem.problemName}
             </a>
-            <img src={greenCheckMark} className={problemCol} alt="A green checkmark" id="greenCheckMark"
-                 style={{display: hasSolvedProblem(problem.id) ? "row" : "none"}}/>
             <div className="starRow"
                  onMouseLeave={() => {
                      setUserRating(problem.rating)

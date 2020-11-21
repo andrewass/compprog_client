@@ -3,7 +3,7 @@ version: "3"
 services:
   #Comp Prog Client App
   compprog-client:
-    image: compprog-client
+    image: comp-prog-client:1.0
     ports:
       - 3000:3000
     stdin_open: true
