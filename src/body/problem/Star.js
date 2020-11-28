@@ -10,6 +10,6 @@ const Star = ({index, isGold, updateUserRating}) => {
              alt="A star icon"
              onMouseEnter={() => updateUserRating(index)}/>
     );
-}
+};
 
 export default Star;
