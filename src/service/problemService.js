@@ -6,6 +6,12 @@ const SOLVED_PROBLEMS_URL = "http://localhost:8080/problem/solved-problems";
 
 const ADD_RATING_URL = "http://localhost:8080/problem/add-problem-rating";
 
+const PROBLEM_TAGS_URL = "http://localhost:8080/problem/all-problem-tags";
+
+const getProblemTags = () => {
+    return axios.get(PROBLEM_TAGS_URL);
+}
+
 const getProblems = (page) => {
     let username = localStorage.getItem("username");
     return axios.get(TRENDING_PROBLEMS_URL, {
@@ -31,4 +37,9 @@ const submitUserRating = (problemId, rating) => {
     });
 }
 
-export {getProblems, getSolvedProblems, submitUserRating};
+export {
+    getProblems,
+    getSolvedProblems,
+    getProblemTags,
+    submitUserRating
+};

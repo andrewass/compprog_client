@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import goldStar from "../../images/starGold.svg";
 import plainStar from "../../images/starPlain.svg";
 
