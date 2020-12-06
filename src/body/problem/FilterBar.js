@@ -1,14 +1,32 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
+import {ProblemContext} from "./ProblemContext";
+import {getProblemsByTags} from "../../service/problemService";
 
 const FilterBar = ({problemTags}) => {
+
+    const [context, setContext] = useContext(ProblemContext);
 
     const [currentTag, setCurrentTag] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [selectedTags] = useState(new Set());
-    const [showSuggestions] = useState(true);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const {page, problemList, pages} = context;
+
+    const fetchProblemsByTags = () => {
+        getProblemsByTags(page, Array.from(selectedTags))
+            .then(response => {
+                setContext({
+                    problemList: response.data.problems,
+                    page: page,
+                    pages : response.data.totalPages
+                });
+            })
+            .catch(error => console.log(error));
+    };
 
     const submitForm = (event) => {
         event.preventDefault();
+        fetchProblemsByTags();
     };
 
     const fillSuggestions = () => {
@@ -16,11 +34,15 @@ const FilterBar = ({problemTags}) => {
     };
 
     const updateCurrentTag = (event) => {
-        setCurrentTag(event.target.value);
-        if (currentTag.charAt(currentTag.length - 1) === ',') {
-            selectedTags.add(currentTag.substring(0, currentTag.length - 1));
-            setCurrentTag("");
-        }
+        let current = event.target.value;
+        setCurrentTag(current);
+        setShowSuggestions(current.length > 0);
+    };
+
+    const addTagToList = (item) => {
+        selectedTags.add(item);
+        setCurrentTag("");
+        setShowSuggestions(false);
     };
 
     const fillSuggestionList = () => {
@@ -29,17 +51,21 @@ const FilterBar = ({problemTags}) => {
                 <ul>
                     {suggestions.slice(0, Math.min(suggestions.length, 4))
                         .map((item, index) => {
-                            return (<li onClick={() => setCurrentTag(item)}>{item}</li>);
+                            return (<li onClick={() => addTagToList(item)}>{item}</li>);
                         })}
                 </ul>
             );
         }
     };
 
+    const showSelectedTags = () => {
+        return Array.from(selectedTags).map((item, index) =>
+            <li>{item}</li>);
+    };
+
     useEffect(() => {
         fillSuggestions();
-        console.log("Logging useeffect");
-    },[currentTag]);
+    }, [currentTag]);
 
     return (
         <div>
@@ -47,8 +73,11 @@ const FilterBar = ({problemTags}) => {
                 <input value={currentTag} type="text" placeholder="Filter on comma separated tags"
                        onChange={updateCurrentTag}/>
                 {fillSuggestionList()}
-                <input type="submit" value="Submit"/>
+                <input type="submit" value="Filter"/>
             </form>
+            <ul className="tagList">
+                {showSelectedTags()}
+            </ul>
         </div>
     );
 };

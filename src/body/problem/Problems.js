@@ -1,18 +1,12 @@
 import React, {useEffect, useState} from "react";
 import ProblemList from "./ProblemList";
-import {getProblemTags, getSolvedProblems} from "../../service/problemService";
+import {getProblemTags} from "../../service/problemService";
 import FilterBar from "./FilterBar";
+import ProblemProvider from "./ProblemContext";
 
 const Problems = () => {
 
-    const [solvedProblems, setSolvedProblems] = useState(new Set());
     const [problemTags, setProblemTags] = useState([]);
-
-    const fetchSolvedProblems = (username) => {
-        getSolvedProblems(username)
-            .then(response => setSolvedProblems(new Set(response.data.problems)))
-            .catch(error => console.log(error))
-    };
 
     const fetchProblemTags = () => {
         getProblemTags()
@@ -21,17 +15,15 @@ const Problems = () => {
     };
 
     useEffect(() => {
-        let username = localStorage.getItem("username");
-        if (username) {
-            fetchSolvedProblems(username);
-        }
         fetchProblemTags();
     }, []);
 
     return (
         <div className="problems">
-            <FilterBar problemTags={problemTags}/>
-            <ProblemList className="problemList" solvedProblems={solvedProblems}/>
+            <ProblemProvider>
+                <FilterBar problemTags={problemTags}/>
+                <ProblemList className="problemList"/>
+            </ProblemProvider>
         </div>
     );
 };

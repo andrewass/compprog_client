@@ -5,7 +5,7 @@ const ProblemTag = ({tag}) => {
 
     return (
         <div className="problemTag">
-            {tag}
+            {tag.categoryTag}
         </div>
     );
 };
