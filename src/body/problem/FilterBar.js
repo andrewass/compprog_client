@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {ProblemContext} from "./ProblemContext";
 import {getProblemsByTags} from "../../service/problemService";
+import SelectedTag from "./SelectedTag";
 
 const FilterBar = ({problemTags}) => {
 
@@ -8,17 +9,16 @@ const FilterBar = ({problemTags}) => {
 
     const [currentTag, setCurrentTag] = useState("");
     const [suggestions, setSuggestions] = useState([]);
-    const [selectedTags] = useState(new Set());
     const [showSuggestions, setShowSuggestions] = useState(false);
-    const {page, problemList, pages} = context;
+    const {page, problemList, tagSet, pages} = context;
 
     const fetchProblemsByTags = () => {
-        getProblemsByTags(page, Array.from(selectedTags))
+        getProblemsByTags(page, Array.from(tagSet))
             .then(response => {
                 setContext({
                     problemList: response.data.problems,
-                    page: page,
-                    pages : response.data.totalPages
+                    tagSet, page,
+                    pages: response.data.totalPages,
                 });
             })
             .catch(error => console.log(error));
@@ -40,7 +40,7 @@ const FilterBar = ({problemTags}) => {
     };
 
     const addTagToList = (item) => {
-        selectedTags.add(item);
+        tagSet.add(item);
         setCurrentTag("");
         setShowSuggestions(false);
     };
@@ -58,9 +58,8 @@ const FilterBar = ({problemTags}) => {
         }
     };
 
-    const showSelectedTags = () => {
-        return Array.from(selectedTags).map((item, index) =>
-            <li>{item}</li>);
+    const removeTagFromSet = (tag) => {
+        tagSet.delete(tag);
     };
 
     useEffect(() => {
@@ -68,7 +67,7 @@ const FilterBar = ({problemTags}) => {
     }, [currentTag]);
 
     return (
-        <div>
+        <React.Fragment>
             <form onSubmit={submitForm}>
                 <input value={currentTag} type="text" placeholder="Filter on comma separated tags"
                        onChange={updateCurrentTag}/>
@@ -76,9 +75,12 @@ const FilterBar = ({problemTags}) => {
                 <input type="submit" value="Filter"/>
             </form>
             <ul className="tagList">
-                {showSelectedTags()}
+                {Array.from(tagSet).map((item, index) =>
+                    <li key={index}>
+                        <SelectedTag removeTag={removeTagFromSet} index={index} tag={item}/>
+                    </li>)}
             </ul>
-        </div>
+        </React.Fragment>
     );
 };
 
