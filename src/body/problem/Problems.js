@@ -7,6 +7,10 @@ import ProblemProvider from "./ProblemContext";
 const Problems = () => {
 
     const [problemTags, setProblemTags] = useState([]);
+    const [problemList, setProblemList] = useState([]);
+    const [tagSet, setTagSet] = useState(new Set());
+    const [page, setPage] = useState(0);
+    const [pages, setPages] = useState(0);
 
     const fetchProblemTags = () => {
         getProblemTags()
@@ -21,8 +25,10 @@ const Problems = () => {
     return (
         <div className="problems">
             <ProblemProvider>
-                <FilterBar problemTags={problemTags}/>
-                <ProblemList className="problemList"/>
+                <FilterBar problemTags={problemTags} setProblemList={setProblemList} setPages={setPages}
+                           tagSet={tagSet} page={page} setPage={setPage}/>
+                <ProblemList pages={pages} setPages={setPages} setProblemList={setProblemList} page={page}
+                             setPage={setPage} tagSet={tagSet} problemList={problemList} className="problemList"/>
             </ProblemProvider>
         </div>
     );

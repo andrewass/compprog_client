@@ -1,38 +1,23 @@
-import React, {useContext, useEffect} from "react";
+import React, {useEffect} from "react";
 import Problem from "./Problem";
 import {getProblemsByTags} from "../../service/problemService";
-import {ProblemContext} from "./ProblemContext";
 
 
-const ProblemList = () => {
-
-    const [context, setContext] = useContext(ProblemContext);
-    const {page, problemList, tagSet, pages} = context;
+const ProblemList = ({page, setPage, pages, setPages, setProblemList, tagSet, problemList}) => {
 
     const getPreviousPage = () => {
-        setContext({
-            page: Math.max(page - 1, 0),
-            problemList : problemList,
-            tagSet, pages
-        })
+        setPage(Math.max(page - 1, 0));
     };
 
     const getNextPage = () => {
-        setContext({
-            page: Math.min(page + 1, pages - 1),
-            problemList : problemList,
-            tagSet, pages
-        });
+        setPage(Math.min(page + 1, pages - 1));
     };
 
     const fetchProblems = () => {
         getProblemsByTags(page, Array.from(tagSet))
             .then(response => {
-                setContext({
-                    problemList: response.data.problems,
-                    tagSet, page,
-                    pages: response.data.totalPages
-                });
+                setProblemList(response.data.problems);
+                setPages(response.data.totalPages);
             })
             .catch(error => console.log(error));
     };

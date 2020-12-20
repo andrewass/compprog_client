@@ -1,25 +1,20 @@
-import React, {useContext, useEffect, useState} from "react";
-import {ProblemContext} from "./ProblemContext";
+import React, {useEffect, useState} from "react";
 import {getProblemsByTags} from "../../service/problemService";
 import SelectedTag from "./SelectedTag";
 
-const FilterBar = ({problemTags}) => {
-
-    const [context, setContext] = useContext(ProblemContext);
+const FilterBar = ({problemTags, setProblemList, setPages, tagSet, page, setPage}) => {
 
     const [currentTag, setCurrentTag] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
-    const {page, problemList, tagSet, pages} = context;
+    const [selectedTagCount, setSelectedTagCount] = useState(0);
 
     const fetchProblemsByTags = () => {
+        setPage(0);
         getProblemsByTags(page, Array.from(tagSet))
             .then(response => {
-                setContext({
-                    problemList: response.data.problems,
-                    tagSet, page,
-                    pages: response.data.totalPages,
-                });
+                setProblemList(response.data.problems);
+                setPages(response.data.totalPages);
             })
             .catch(error => console.log(error));
     };
@@ -30,7 +25,8 @@ const FilterBar = ({problemTags}) => {
     };
 
     const fillSuggestions = () => {
-        setSuggestions(problemTags.filter(word => word.startsWith(currentTag)));
+        setSuggestions(problemTags.filter(word =>
+            word.toLowerCase().startsWith(currentTag.toLowerCase())));
     };
 
     const updateCurrentTag = (event) => {
@@ -41,6 +37,7 @@ const FilterBar = ({problemTags}) => {
 
     const addTagToList = (item) => {
         tagSet.add(item);
+        setSelectedTagCount(tagSet.size);
         setCurrentTag("");
         setShowSuggestions(false);
     };
@@ -58,27 +55,37 @@ const FilterBar = ({problemTags}) => {
         }
     };
 
+    const fillSelectedTagsList = () => {
+        return (
+            Array.from(tagSet).map((item, index) =>
+                <li key={index}>
+                    <SelectedTag removeTag={removeTagFromSet} index={index} tag={item}/>
+                </li>)
+        );
+    };
+
     const removeTagFromSet = (tag) => {
         tagSet.delete(tag);
+        setSelectedTagCount(tagSet.size);
     };
 
     useEffect(() => {
         fillSuggestions();
     }, [currentTag]);
 
+    useEffect(() => {
+        fillSelectedTagsList();
+    }, [selectedTagCount]);
+
     return (
         <React.Fragment>
             <form onSubmit={submitForm}>
-                <input value={currentTag} type="text" placeholder="Filter on comma separated tags"
-                       onChange={updateCurrentTag}/>
+                <input value={currentTag} type="text" placeholder="Enter category tag" onChange={updateCurrentTag}/>
                 {fillSuggestionList()}
                 <input type="submit" value="Filter"/>
             </form>
             <ul className="tagList">
-                {Array.from(tagSet).map((item, index) =>
-                    <li key={index}>
-                        <SelectedTag removeTag={removeTagFromSet} index={index} tag={item}/>
-                    </li>)}
+                {fillSelectedTagsList()}
             </ul>
         </React.Fragment>
     );
